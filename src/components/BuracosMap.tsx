@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Buraco } from "@/types/buraco";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -8,7 +7,7 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-let DefaultIcon = L.icon({
+const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
   iconSize: [25, 41],
@@ -22,32 +21,20 @@ interface BuracosMapProps {
 }
 
 // Coordenadas de Manacapuru-AM
-const MANACAPURU_CENTER = [-3.2994, -60.6206] as L.LatLngExpression;
-
-const MapUpdater = ({ center }: { center: L.LatLngExpression }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (Array.isArray(center)) {
-      map.setView(center as [number, number], 13);
-    }
-  }, [center, map]);
-  return null;
-};
+const MANACAPURU_CENTER: [number, number] = [-3.2994, -60.6206];
 
 export const BuracosMap = ({ buracos }: BuracosMapProps) => {
   return (
     <div className="h-[calc(100vh-200px)] rounded-lg overflow-hidden border border-primary/20 alien-glow">
       <MapContainer
-        // @ts-ignore - react-leaflet types issue
         center={MANACAPURU_CENTER}
         zoom={13}
-        className="h-full w-full"
+        style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
-          // @ts-ignore - react-leaflet types issue
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
-        <MapUpdater center={MANACAPURU_CENTER} />
         
         {buracos
           .filter((b) => b.latitude && b.longitude)
