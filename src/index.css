@@ -8,57 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 140 40% 8%;
-    --foreground: 140 80% 95%;
+    --background: 140 60% 98%;
+    --foreground: 140 40% 10%;
 
-    --card: 140 35% 10%;
-    --card-foreground: 140 80% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 140 40% 10%;
 
-    --popover: 140 35% 10%;
-    --popover-foreground: 140 80% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 40% 10%;
 
-    --primary: 158 100% 50%;
-    --primary-foreground: 140 40% 8%;
+    --primary: 158 85% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 140 45% 15%;
-    --secondary-foreground: 140 80% 95%;
+    --secondary: 140 30% 92%;
+    --secondary-foreground: 140 40% 10%;
 
-    --muted: 140 35% 18%;
-    --muted-foreground: 140 30% 60%;
+    --muted: 140 30% 94%;
+    --muted-foreground: 140 20% 40%;
 
-    --accent: 158 100% 50%;
-    --accent-foreground: 140 40% 8%;
+    --accent: 158 85% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 140 40% 20%;
-    --input: 140 40% 20%;
-    --ring: 158 100% 50%;
+    --border: 140 30% 88%;
+    --input: 140 30% 88%;
+    --ring: 158 85% 45%;
 
     --radius: 1rem;
 
     /* Alien theme colors */
-    --alien-green: 158 100% 50%;
-    --alien-glow: 158 100% 60%;
-    --space-dark: 140 40% 5%;
+    --alien-green: 158 85% 45%;
+    --alien-glow: 158 85% 50%;
+    --space-light: 140 60% 96%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(140 60% 20%), hsl(158 100% 30%));
-    --gradient-glow: linear-gradient(180deg, hsl(158 100% 50% / 0.2), transparent);
+    --gradient-primary: linear-gradient(135deg, hsl(140 80% 92%), hsl(158 70% 88%));
+    --gradient-glow: linear-gradient(180deg, hsl(158 85% 45% / 0.1), transparent);
     
     /* Shadows */
-    --shadow-alien: 0 0 30px hsl(158 100% 50% / 0.4);
-    --shadow-strong: 0 10px 40px hsl(158 100% 50% / 0.3);
+    --shadow-alien: 0 2px 15px hsl(158 85% 45% / 0.15);
+    --shadow-strong: 0 4px 20px hsl(158 85% 45% / 0.2);
     
-    --sidebar-background: 140 40% 8%;
-    --sidebar-foreground: 140 80% 95%;
-    --sidebar-primary: 158 100% 50%;
-    --sidebar-primary-foreground: 140 40% 8%;
-    --sidebar-accent: 140 45% 15%;
-    --sidebar-accent-foreground: 140 80% 95%;
-    --sidebar-border: 140 40% 20%;
-    --sidebar-ring: 158 100% 50%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 140 40% 10%;
+    --sidebar-primary: 158 85% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 30% 92%;
+    --sidebar-accent-foreground: 140 40% 10%;
+    --sidebar-border: 140 30% 88%;
+    --sidebar-ring: 158 85% 45%;
   }
 
   .dark {
@@ -99,7 +99,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background: radial-gradient(ellipse at top, hsl(140 60% 15%), hsl(140 40% 8%));
+    background: linear-gradient(to bottom, hsl(140 70% 95%), hsl(158 60% 96%));
     min-height: 100vh;
   }
 }
