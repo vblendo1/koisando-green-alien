@@ -6,17 +6,32 @@ export const About = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Sobre a Onda Pro
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Somos uma <strong>importadora nacional especializada</strong> em materiais escolares, 
-              de escritório e produtos criativos com marca própria. Atendemos papelarias, escolas 
-              e distribuidores em todo o Brasil com <strong>condições comerciais diferenciadas</strong>.
+              Na Onda Pro, acreditamos que <strong>inovação e propósito movem o mercado</strong>. 
+              Somos uma importadora especializada em materiais escolares, produtos para escritório 
+              e soluções de home office que transformam a rotina de quem vende, trabalha e cria.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Nossa missão é <strong>fortalecer o varejo local</strong>, oferecendo produtos de qualidade, 
-              estoque nacional e prazos que fazem a diferença no caixa do lojista.
+              Mesmo sendo uma empresa jovem, <strong>nascemos com experiência de sobra</strong>. 
+              Atuamos lado a lado com parceiros estratégicos no Brasil e no exterior para oferecer 
+              um portfólio que combina qualidade, design e alto potencial de venda.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Nossa curadoria é guiada por um princípio simples: <strong>todo produto precisa inspirar 
+              confiança e desejo</strong>. Por isso, cada item é selecionado com atenção ao desempenho 
+              nas prateleiras, à estética das embalagens e à experiência do consumidor final.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Do primeiro contato à entrega, nossa missão é facilitar a vida de quem revende. 
+              Trabalhamos com <strong>agilidade, negociações justas e suporte próximo</strong>, 
+              ajudando papelarias, lojas e distribuidores a crescerem com consistência, margem e estoque sempre em dia.
+            </p>
+            <p className="text-lg font-semibold text-foreground leading-relaxed">
+              Mais do que uma fornecedora, somos uma parceira de negócios comprometida com o seu resultado. 
+              <span className="text-primary"> Onda Pro é mais que produto. É valor, confiança e movimento.</span>
             </p>
             
             <div className="grid sm:grid-cols-3 gap-6 pt-6">
@@ -47,12 +62,17 @@ export const About = () => {
           </div>
           
           <div className="relative animate-float">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center overflow-hidden">
-              <div className="text-center p-8">
-                <p className="text-4xl md:text-6xl font-bold text-primary mb-4">10+</p>
-                <p className="text-xl font-semibold">Anos no Mercado</p>
-                <p className="text-muted-foreground mt-4">
-                  Fornecendo qualidade e confiança para o varejo brasileiro
+            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center overflow-hidden p-8">
+              <div className="text-center space-y-6">
+                <div>
+                  <p className="text-5xl md:text-7xl font-bold text-primary mb-2">+</p>
+                  <p className="text-2xl md:text-3xl font-bold">Experiência</p>
+                  <p className="text-lg font-semibold text-muted-foreground mt-2">
+                    que Faz a Diferença
+                  </p>
+                </div>
+                <p className="text-base text-muted-foreground leading-relaxed max-w-sm mx-auto">
+                  Parceiros estratégicos no Brasil e exterior garantindo qualidade e resultado
                 </p>
               </div>
             </div>
