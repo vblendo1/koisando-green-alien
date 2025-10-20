@@ -1,52 +1,55 @@
-import alienMascot from "@/assets/alien-mascot.png";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, List } from "lucide-react";
+import logoAzul from "@/assets/logo-azul.png";
 
-interface HeaderProps {
-  onViewChange: (view: 'feed' | 'map') => void;
-  currentView: 'feed' | 'map';
-}
+export const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
 
-export const Header = ({ onViewChange, currentView }: HeaderProps) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-50 bg-card/98 backdrop-blur-md border-b border-border shadow-sm">
-      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <img 
-              src={alienMascot} 
-              alt="BuraKM Alien" 
-              className="w-10 h-10 sm:w-12 sm:h-12 animate-float rounded-full flex-shrink-0"
-            />
-            <div className="min-w-0">
-              <h1 className="text-lg sm:text-2xl md:text-3xl font-bold font-space text-primary truncate">
-                BuraKM
-              </h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">Manacapuru-AM 🛸</p>
-            </div>
-          </div>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background shadow-lg" : "bg-background/95 backdrop-blur-sm"
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <img src={logoAzul} alt="Onda Pro" className="h-10 md:h-12" />
+        
+        <nav className="hidden md:flex items-center gap-8">
+          <button
+            onClick={() => scrollToSection("produtos")}
+            className="text-foreground hover:text-secondary transition-colors font-medium"
+          >
+            Produtos
+          </button>
+          <button
+            onClick={() => scrollToSection("formulario")}
+            className="text-foreground hover:text-secondary transition-colors font-medium"
+          >
+            Contato
+          </button>
+        </nav>
 
-          <div className="flex gap-1 sm:gap-2 flex-shrink-0">
-            <Button
-              variant={currentView === 'feed' ? 'default' : 'secondary'}
-              size="sm"
-              onClick={() => onViewChange('feed')}
-              className="font-space text-xs sm:text-sm h-8 sm:h-9 px-2 sm:px-3"
-            >
-              <List className="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-2" />
-              <span className="hidden sm:inline">Feed</span>
-            </Button>
-            <Button
-              variant={currentView === 'map' ? 'default' : 'secondary'}
-              size="sm"
-              onClick={() => onViewChange('map')}
-              className="font-space text-xs sm:text-sm h-8 sm:h-9 px-2 sm:px-3"
-            >
-              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-2" />
-              <span className="hidden sm:inline">Mapa</span>
-            </Button>
-          </div>
-        </div>
+        <Button
+          onClick={() => scrollToSection("formulario")}
+          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
+        >
+          Receber Catálogo
+        </Button>
       </div>
     </header>
   );
