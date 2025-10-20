@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logoAzul from "@/assets/logo-azul.png";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,18 +19,34 @@ export const Header = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+    // Se estiver na página de blog, navegar para home primeiro
+    if (location.pathname === "/blog") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleBlogClick = () => {
+    navigate("/blog");
+    setIsMobileMenuOpen(false);
   };
 
   const menuItems = [
-    { id: "sobre", label: "Sobre" },
-    { id: "produtos", label: "Produtos" },
-    { id: "blog", label: "Blog" },
-    { id: "formulario", label: "Contato" },
+    { id: "sobre", label: "Sobre", action: "scroll" },
+    { id: "produtos", label: "Produtos", action: "scroll" },
+    { id: "blog", label: "Blog", action: "navigate" },
+    { id: "formulario", label: "Contato", action: "scroll" },
   ];
 
   return (
@@ -45,7 +64,7 @@ export const Header = () => {
             {menuItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => item.action === "navigate" ? handleBlogClick() : scrollToSection(item.id)}
                 className="text-foreground hover:text-primary transition-colors font-medium"
               >
                 {item.label}
@@ -82,7 +101,7 @@ export const Header = () => {
             {menuItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => item.action === "navigate" ? handleBlogClick() : scrollToSection(item.id)}
                 className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors font-medium"
               >
                 {item.label}

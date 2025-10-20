@@ -1,6 +1,7 @@
 import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -68,24 +69,28 @@ export const Blog = () => {
                 </p>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button variant="outline" className="w-full group">
-                  Ler mais
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link to="/blog" className="w-full">
+                  <Button variant="outline" className="w-full group">
+                    Ler mais
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
         </div>
 
         <div className="text-center">
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="rounded-full px-8"
-          >
-            Ver todos os artigos
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          <Link to="/blog">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="rounded-full px-8"
+            >
+              Ver todos os artigos
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
