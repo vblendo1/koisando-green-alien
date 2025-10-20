@@ -8,87 +8,99 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 140 60% 98%;
-    --foreground: 140 40% 10%;
+    --background: 0 0% 100%;
+    --foreground: 282 44% 32%;
 
     --card: 0 0% 100%;
-    --card-foreground: 140 40% 10%;
+    --card-foreground: 282 44% 32%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 140 40% 10%;
+    --popover-foreground: 282 44% 32%;
 
-    --primary: 158 85% 45%;
+    /* Roxo Onda Pro #5F2D74 */
+    --primary: 282 44% 32%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 140 30% 92%;
-    --secondary-foreground: 140 40% 10%;
+    /* Turquesa Onda Pro #0AA9B3 */
+    --secondary: 185 89% 37%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 140 30% 94%;
-    --muted-foreground: 140 20% 40%;
+    /* Verde claro #B1CD49 */
+    --accent: 74 55% 55%;
+    --accent-foreground: 282 44% 32%;
 
-    --accent: 158 85% 45%;
-    --accent-foreground: 0 0% 100%;
+    /* Verde escuro #385630 */
+    --success: 108 28% 27%;
+    --success-foreground: 0 0% 100%;
+
+    --muted: 185 30% 94%;
+    --muted-foreground: 282 10% 50%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 140 30% 88%;
-    --input: 140 30% 88%;
-    --ring: 158 85% 45%;
+    --border: 185 20% 90%;
+    --input: 185 20% 90%;
+    --ring: 282 44% 32%;
 
     --radius: 1rem;
 
-    /* Alien theme colors */
-    --alien-green: 158 85% 45%;
-    --alien-glow: 158 85% 50%;
-    --space-light: 140 60% 96%;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(140 80% 92%), hsl(158 70% 88%));
-    --gradient-glow: linear-gradient(180deg, hsl(158 85% 45% / 0.1), transparent);
-    
-    /* Shadows */
-    --shadow-alien: 0 2px 15px hsl(158 85% 45% / 0.15);
-    --shadow-strong: 0 4px 20px hsl(158 85% 45% / 0.2);
-    
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 140 40% 10%;
-    --sidebar-primary: 158 85% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 140 30% 92%;
-    --sidebar-accent-foreground: 140 40% 10%;
-    --sidebar-border: 140 30% 88%;
-    --sidebar-ring: 158 85% 45%;
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 140 40% 8%;
-    --foreground: 140 80% 95%;
-    --card: 140 35% 10%;
-    --card-foreground: 140 80% 95%;
-    --popover: 140 35% 10%;
-    --popover-foreground: 140 80% 95%;
-    --primary: 158 100% 50%;
-    --primary-foreground: 140 40% 8%;
-    --secondary: 140 45% 15%;
-    --secondary-foreground: 140 80% 95%;
-    --muted: 140 35% 18%;
-    --muted-foreground: 140 30% 60%;
-    --accent: 158 100% 50%;
-    --accent-foreground: 140 40% 8%;
+    --background: 282 44% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 282 44% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 282 44% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 282 44% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 185 89% 37%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 74 55% 55%;
+    --accent-foreground: 282 44% 32%;
+
+    --success: 108 28% 27%;
+    --success-foreground: 0 0% 100%;
+
+    --muted: 282 30% 20%;
+    --muted-foreground: 0 0% 70%;
+
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 140 40% 20%;
-    --input: 140 40% 20%;
-    --ring: 158 100% 50%;
-    --sidebar-background: 140 40% 8%;
-    --sidebar-foreground: 140 80% 95%;
-    --sidebar-primary: 158 100% 50%;
-    --sidebar-primary-foreground: 140 40% 8%;
-    --sidebar-accent: 140 45% 15%;
-    --sidebar-accent-foreground: 140 80% 95%;
-    --sidebar-border: 140 40% 20%;
-    --sidebar-ring: 158 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 282 30% 25%;
+    --input: 282 30% 25%;
+    --ring: 185 89% 37%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -99,30 +111,14 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(to bottom, hsl(140 70% 95%), hsl(158 60% 96%));
-    min-height: 100vh;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   }
-}
 
-@layer utilities {
-  .alien-glow {
-    box-shadow: var(--shadow-alien);
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
   }
-  
-  .alien-text-glow {
-    text-shadow: 0 0 20px hsl(var(--alien-glow) / 0.6);
-  }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
   }
 }
