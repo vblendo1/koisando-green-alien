@@ -1,5 +1,3 @@
-import { Package } from 'lucide-react';
-
 const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

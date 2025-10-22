@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { Logos3 } from './components/ui/logos3';
 import Differentials from './components/Differentials';
 import ProductCatalog from './components/ProductCatalog';
 import Testimonials from './components/Testimonials';
@@ -19,7 +18,6 @@ function App() {
     <div className="min-h-screen bg-[#f6f6f6]">
       <Navbar />
       <Hero onCTAClick={() => setIsModalOpen(true)} />
-      <Logos3 />
       <div id="diferenciais">
         <Differentials onCTAClick={() => setIsModalOpen(true)} />
       </div>
