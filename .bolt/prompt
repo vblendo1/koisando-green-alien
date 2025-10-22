@@ -1,0 +1,31 @@
+Você está trabalhando em uma landing page de alta conversão para a ONDA PRO, uma importadora B2B de materiais escolares e de escritório.
+
+O objetivo principal é captar leads qualificados como papelarias, lojas de escritório e distribuidores através de tráfego pago.Sobre a identidade visual e designA landing page deve ter um visual moderno, profissional e clean. 
+
+A paleta de cores oficial da marca combina tons de roxo e azul.Os tons de roxo disponíveis são: #6c256f, #8c4091, #9e61a4 e #dbbfdd. Os tons de azul são: #009bac, #4dbdc6, #77c8d2 e #96d3dd. Use #f6f6f6 como tom de branco para fundos e áreas de respiro visual. Você tem liberdade criativa para combinar essas cores de forma harmoniosa e criar gradientes, overlays e composições que funcionem bem.
+
+Escolha fontes modernas e legíveis sempre mantendo uma hierarquia visual clara. O design deve transmitir profissionalismo e modernidade, com muita atenção ao espaço em branco e à respiração visual.
+
+Use Framer Motion para criar animações e microinterações que melhorem a experiência do usuário. 
+
+Seja criativo nas transições e efeitos, mas mantenha tudo funcional e sem prejudicar a performance. Os ícones devem vir da biblioteca Lucide React.O design deve ser responsivo e funcionar perfeitamente em todos os dispositivos. Implemente um tema claro com alternância funcional para dark mode se achar relevante.Stack técnico que você deve usar
+
+Construa tudo com React e Vite como base. Para estilização, use Tailwind CSS. Implemente animações com Framer Motion e ícones com Lucide React. A abordagem deve ser mobile-first.Estrutura da página
+
+A landing page precisa ter estas seções essenciais, mas você tem liberdade para interpretar e implementar cada uma da melhor forma:
+
+Uma hero section impactante que capture a atenção imediatamente. Ela deve ter uma headline forte, elementos dinâmicos que prendam o olhar, CTAs claros e um microcopy de apoio.Uma seção de prova social mostrando credibilidade através de logos de clientes, selos ou outros elementos que transmitam confiança.
+
+Uma seção destacando os diferenciais e vantagens competitivas da ONDA PRO de forma visual e persuasiva.Uma apresentação do catálogo de produtos organizada em categorias, com um sistema inteligente de captura de leads quando o usuário demonstrar interesse.Uma seção de depoimentos que humanize a marca e traga credibilidade através de experiências reais de clientes.
+
+Um blog educativo com conteúdo relevante para o público B2B, mostrando autoridade no segmento.
+
+Um formulário de captura estrategicamente posicionado com o CTA "Quero meu Catálogo Agora".
+
+Uma seção sobre a empresa que conte a história e posicione a marca como referência no mercado.Um footer completo com todas as informações legais, contatos e links relevantes.Você tem total liberdade para adicionar micro-seções, elementos visuais, animações e recursos que melhorem a experiência e aumentem a conversão.Como escrever os textosUse técnicas profissionais de copywriting em todos os textos. Pense em como capturar atenção, gerar interesse, criar desejo e motivar ação. Utilize gatilhos mentais como urgência, escassez, autoridade, prova social e reciprocidade onde fizerem sentido.
+
+Foque sempre em benefícios ao invés de apenas listar características. Transforme features técnicas em vantagens concretas para o negócio do lojista. Use linguagem que ressoe com o público B2B, falando sobre margem de lucro, giro de estoque, ROI e resultados financeiros.Seja estratégico com power words, números específicos, perguntas que provocam reflexão e histórias que humanizam. 
+
+Use verbos de ação nos CTAs e crie microcopies persuasivos que reduzam objeções.Você tem liberdade criativa para desenvolver headlines impactantes, body copies envolventes e CTAs irresistíveis. O importante é que cada palavra trabalhe para a conversão.Benefícios principais para destacarA ONDA PRO oferece produtos com até duzentos por cento de margem de lucro. O prazo de pagamento é de sessenta dias via boleto. O frete é grátis para todo o Brasil. Há atendimento exclusivo via WhatsApp. 
+
+O catálogo é profissional e funciona como material de vendas pronto para uso.Você pode destacar esses benefícios de formas criativas e persuasivas ao longo de toda a página.CTAs principaisOs textos exatos para os botões principais são: "Quero meu Catálogo Exclusivo", "Falar com o Comercial Agora", "Ver os Produtos Campeões" e "Acessar o Blog da Onda Pro". Mas você tem liberdade para criar CTAs secundários e microcopies de apoio que façam sentido no contexto.Princípios importantesMantenha sempre o foco em conversão e na experiência do usuário B2B. Garanta que a página seja acessível, responsiva e performe bem em todos os dispositivos. Use as cores da paleta oficial, mas sinta-se livre para criar composições visuais interessantes.Toda decisão de design, copy ou estrutura deve facilitar a jornada do lead e tornar a conversão natural e intuitiva. Se algo puder ser melhorado para gerar mais resultados, faça.

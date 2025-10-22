@@ -1,98 +1,90 @@
-import { ArrowRight, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { BookOpen, TrendingUp, Eye } from 'lucide-react';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Como aumentar as vendas da sua papelaria em 2025",
-    excerpt: "Estratégias práticas para impulsionar seu faturamento com produtos de alta margem e atendimento diferenciado.",
-    date: "15 de Março, 2025",
-    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop",
-  },
-  {
-    id: 2,
-    title: "Tendências de material escolar para o próximo semestre",
-    excerpt: "Descubra quais produtos estão em alta e como montar um mix de sucesso para a volta às aulas.",
-    date: "10 de Março, 2025",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop",
-  },
-  {
-    id: 3,
-    title: "Gestão de estoque: o que funciona para papelarias",
-    excerpt: "Aprenda a equilibrar seu estoque, reduzir custos e garantir disponibilidade dos produtos mais vendidos.",
-    date: "5 de Março, 2025",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop",
-  },
-];
+const Blog = () => {
+  const articles = [
+    {
+      icon: TrendingUp,
+      title: 'Como aumentar o ticket médio na volta às aulas',
+      excerpt: 'Estratégias práticas para maximizar suas vendas no período mais importante do ano para papelarias.',
+      color: '#6c256f'
+    },
+    {
+      icon: Eye,
+      title: 'As tendências de papelaria que vão dominar 2026',
+      excerpt: 'Descubra quais produtos estarão em alta e prepare seu estoque com antecedência.',
+      color: '#009bac'
+    },
+    {
+      icon: BookOpen,
+      title: 'O segredo das vitrines que vendem sozinhas',
+      excerpt: 'Técnicas de visual merchandising que transformam sua vitrine em uma verdadeira máquina de vendas.',
+      color: '#8c4091'
+    }
+  ];
 
-export const Blog = () => {
   return (
-    <section id="blog" className="py-16 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Blog Onda Pro
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Conteúdos exclusivos sobre mercado, gestão e estratégias para lojistas que querem crescer.
-          </p>
-        </div>
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
+          Dicas que ajudam sua loja a{' '}
+          <span className="bg-gradient-to-r from-[#6c256f] to-[#009bac] bg-clip-text text-transparent">
+            vender mais
+          </span>
+          {' '}(sem gastar mais)
+        </h2>
+        <p className="text-center text-gray-600 mb-16 text-lg">
+          Conteúdos exclusivos para lojistas que querem crescer
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {blogPosts.map((post, index) => (
-            <Card 
-              key={post.id} 
-              className="overflow-hidden hover:shadow-xl transition-shadow animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardHeader className="p-0">
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {articles.map((article, index) => {
+            const Icon = article.icon;
+            return (
+              <div
+                key={index}
+                className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-200"
+              >
+                <div
+                  className="h-48 flex items-center justify-center relative overflow-hidden"
+                  style={{ backgroundColor: `${article.color}15` }}
+                >
+                  <Icon
+                    size={80}
+                    style={{ color: article.color }}
+                    className="transform group-hover:scale-110 transition-transform duration-300"
+                    strokeWidth={1.5}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                 </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                  <Calendar className="w-4 h-4" />
-                  <span>{post.date}</span>
+
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-[#6c256f] transition-colors duration-300">
+                    {article.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {article.excerpt}
+                  </p>
+                  <button className="text-[#009bac] font-semibold hover:underline inline-flex items-center gap-2">
+                    Ler artigo
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </button>
                 </div>
-                <h3 className="text-xl font-bold mb-3 line-clamp-2">
-                  {post.title}
-                </h3>
-                <p className="text-muted-foreground line-clamp-3">
-                  {post.excerpt}
-                </p>
-              </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Link to="/blog" className="w-full">
-                  <Button variant="outline" className="w-full group">
-                    Ler mais
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
         <div className="text-center">
-          <Link to="/blog">
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="rounded-full px-8"
-            >
-              Ver todos os artigos
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+          <a
+            href="/blog"
+            className="inline-block px-10 py-4 text-lg font-semibold text-[#6c256f] bg-white rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#6c256f]"
+          >
+            Acessar o Blog da Onda Pro
+          </a>
         </div>
       </div>
     </section>
   );
 };
+
+export default Blog;

@@ -1,84 +1,77 @@
-import { Building2, Globe2, TrendingUp } from "lucide-react";
+import { Target, Heart, TrendingUp } from 'lucide-react';
 
-export const About = () => {
+const About = () => {
+  const values = [
+    {
+      icon: Target,
+      title: 'Foco no Lojista',
+      description: 'Entendemos as necessidades reais de quem vende'
+    },
+    {
+      icon: Heart,
+      title: 'Parceria de Verdade',
+      description: 'Seu sucesso é o nosso sucesso'
+    },
+    {
+      icon: TrendingUp,
+      title: 'Crescimento Sustentável',
+      description: 'Produtos e condições que protegem seu caixa'
+    }
+  ];
+
   return (
-    <section id="sobre" className="py-16 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Sobre a Onda Pro
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Na Onda Pro, acreditamos que <strong>inovação e propósito movem o mercado</strong>. 
-              Somos uma importadora especializada em materiais escolares, produtos para escritório 
-              e soluções de home office que transformam a rotina de quem vende, trabalha e cria.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Mesmo sendo uma empresa jovem, <strong>nascemos com experiência de sobra</strong>. 
-              Atuamos lado a lado com parceiros estratégicos no Brasil e no exterior para oferecer 
-              um portfólio que combina qualidade, design e alto potencial de venda.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Nossa curadoria é guiada por um princípio simples: <strong>todo produto precisa inspirar 
-              confiança e desejo</strong>. Por isso, cada item é selecionado com atenção ao desempenho 
-              nas prateleiras, à estética das embalagens e à experiência do consumidor final.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Do primeiro contato à entrega, nossa missão é facilitar a vida de quem revende. 
-              Trabalhamos com <strong>agilidade, negociações justas e suporte próximo</strong>, 
-              ajudando papelarias, lojas e distribuidores a crescerem com consistência, margem e estoque sempre em dia.
-            </p>
-            <p className="text-lg font-semibold text-foreground leading-relaxed">
-              Mais do que uma fornecedora, somos uma parceira de negócios comprometida com o seu resultado. 
-              <span className="text-primary"> Onda Pro é mais que produto. É valor, confiança e movimento.</span>
-            </p>
-            
-            <div className="grid sm:grid-cols-3 gap-6 pt-6">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-3">
-                  <Building2 className="w-8 h-8" />
+    <section className="py-24 bg-gradient-to-br from-[#f6f6f6] to-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Mais que produtos. Uma importadora feita pra{' '}
+            <span className="bg-gradient-to-r from-[#6c256f] to-[#009bac] bg-clip-text text-transparent">
+              lojistas que pensam em crescimento
+            </span>
+          </h2>
+        </div>
+
+        <div className="bg-white rounded-3xl p-12 shadow-xl mb-12 border border-gray-100">
+          <p className="text-xl text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
+            A Onda Pro nasceu com um propósito simples: ajudar papelarias e comércios a vender mais
+            com produtos que chamam atenção, giram rápido e mantêm margem saudável. Do primeiro contato
+            à entrega, nossa missão é facilitar o dia a dia de quem revende.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {values.map((value, index) => {
+            const Icon = value.icon;
+            return (
+              <div
+                key={index}
+                className="text-center group"
+              >
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#6c256f] to-[#009bac] rounded-2xl mb-6 transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Icon className="text-white" size={36} strokeWidth={2} />
                 </div>
-                <h3 className="font-bold text-lg mb-1">Estoque Nacional</h3>
-                <p className="text-sm text-muted-foreground">Entrega rápida em todo Brasil</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 text-secondary mb-3">
-                  <Globe2 className="w-8 h-8" />
-                </div>
-                <h3 className="font-bold text-lg mb-1">Cobertura Nacional</h3>
-                <p className="text-sm text-muted-foreground">Atendemos todo o território</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 text-accent-foreground mb-3">
-                  <TrendingUp className="w-8 h-8" />
-                </div>
-                <h3 className="font-bold text-lg mb-1">Margem Real</h3>
-                <p className="text-sm text-muted-foreground">110% a 200% de lucro</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="relative animate-float">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center overflow-hidden p-8">
-              <div className="text-center space-y-6">
-                <div>
-                  <p className="text-5xl md:text-7xl font-bold text-primary mb-2">+</p>
-                  <p className="text-2xl md:text-3xl font-bold">Experiência</p>
-                  <p className="text-lg font-semibold text-muted-foreground mt-2">
-                    que Faz a Diferença
-                  </p>
-                </div>
-                <p className="text-base text-muted-foreground leading-relaxed max-w-sm mx-auto">
-                  Parceiros estratégicos no Brasil e exterior garantindo qualidade e resultado
+                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                  {value.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {value.description}
                 </p>
               </div>
-            </div>
-          </div>
+            );
+          })}
+        </div>
+
+        <div className="text-center">
+          <a
+            href="/sobrenos"
+            className="inline-block px-10 py-4 text-lg font-semibold text-[#6c256f] bg-white rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-[#6c256f]"
+          >
+            Conhecer mais sobre a Onda Pro
+          </a>
         </div>
       </div>
     </section>
   );
 };
+
+export default About;
