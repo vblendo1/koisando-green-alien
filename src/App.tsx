@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Differentials from './components/Differentials';
-import ProductCatalog from './components/ProductCatalog';
-import Testimonials from './components/Testimonials';
-import Blog from './components/Blog';
+import LogoCarousel from './components/LogoCarousel';
+import Differentials from './components/DifferentialsModern';
+import ProductCatalog from './components/ProductCatalogModern';
+import Testimonials from './components/TestimonialsModern';
+import Blog from './components/BlogModern';
 import ContactForm from './components/ContactForm';
 import FAQ from './components/FAQ';
-import About from './components/About';
+import About from './components/AboutModern';
 import Footer from './components/Footer';
 import FormModal from './components/FormModal';
 
@@ -18,6 +19,7 @@ function App() {
     <div className="min-h-screen bg-[#f6f6f6]">
       <Navbar />
       <Hero onCTAClick={() => setIsModalOpen(true)} />
+      <LogoCarousel />
       <div id="diferenciais">
         <Differentials onCTAClick={() => setIsModalOpen(true)} />
       </div>
