@@ -24,6 +24,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+<<<<<<< HEAD
 import { componentTagger } from "lovable-tagger";
 
 /**
@@ -70,6 +71,20 @@ export default defineConfig(({ mode }) => ({
    *
    * Configurações de como o Vite resolve (encontra) módulos/arquivos
    */
+=======
+import { componentTagger } from 'lovable-tagger';
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  server: {
+    host: '::',
+    port: 8080,
+  },
+  plugins: [
+    react(),
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
   resolve: {
     /**
      * ALIAS - ATALHOS PARA IMPORTS
@@ -123,6 +138,7 @@ export default defineConfig(({ mode }) => ({
      */
     exclude: ['lucide-react'],
   },
+<<<<<<< HEAD
 
   /**
    * ═══════════════════════════════════════════════════════════════
@@ -157,4 +173,6 @@ export default defineConfig(({ mode }) => ({
    *
    * base: '/meu-site/',     // Se hospedar em subpasta
    */
+=======
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 }));

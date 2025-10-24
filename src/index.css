@@ -194,6 +194,7 @@
   }
 }
 
+<<<<<<< HEAD
 @keyframes ripple {
   0% {
     transform: scale(0);
@@ -214,6 +215,14 @@
   }
   100% {
     background-position: 0% 50%;
+=======
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
   }
 }
 
@@ -228,10 +237,19 @@
 
 @keyframes pulse-glow {
   0%, 100% {
+<<<<<<< HEAD
     box-shadow: 0 0 20px rgba(108, 37, 111, 0.4);
   }
   50% {
     box-shadow: 0 0 40px rgba(108, 37, 111, 0.8);
+=======
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(108, 37, 111, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 40px rgba(108, 37, 111, 0.6);
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
   }
 }
 
@@ -256,6 +274,7 @@
   animation: grid 15s linear infinite;
 }
 
+<<<<<<< HEAD
 .animate-ripple {
   animation: ripple 0.6s ease-out;
 }
@@ -263,6 +282,10 @@
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+=======
+.animate-scroll-left {
+  animation: scroll-left 40s linear infinite;
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 }
 
 .animate-float {
@@ -270,11 +293,20 @@
 }
 
 .animate-pulse-glow {
+<<<<<<< HEAD
   animation: pulse-glow 3s ease-in-out infinite;
+=======
+  animation: pulse-glow 2s ease-in-out infinite;
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 }
 
 .animate-shimmer {
   animation: shimmer 3s linear infinite;
+<<<<<<< HEAD
+=======
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background-size: 1000px 100%;
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 }
 
 html {

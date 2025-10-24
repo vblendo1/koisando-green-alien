@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Navbar = () => {
@@ -13,6 +14,20 @@ const Navbar = () => {
     ['blur(8px)', 'blur(16px)']
   );
 
+=======
+import { useState, useEffect } from 'react';
+
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -29,6 +44,7 @@ const Navbar = () => {
   ];
 
   return (
+<<<<<<< HEAD
     <>
     <motion.nav
       className="fixed top-0 left-0 right-0 z-50 border-b border-white/10"
@@ -48,6 +64,14 @@ const Navbar = () => {
           >
             <img src="/BRANCA.png" alt="Onda Pro" className="h-8 md:h-10" />
           </motion.div>
+=======
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#6c256f]/95 backdrop-blur-md shadow-xl py-3' : 'bg-[#6c256f] shadow-lg py-4'}`}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src="/AZUL.png" alt="Onda Pro" className="h-12 md:h-14" />
+          </div>
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item, index) => (

@@ -38,14 +38,22 @@ import { useState } from 'react';
 // Todos os componentes da landing page
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+<<<<<<< HEAD
 import { Logos3 } from './components/ui/logos3';
 import Differentials from './components/Differentials';
 import { ProductsSection } from './components/ProductsSection';
 import Testimonials from './components/Testimonials';
 import Blog from './components/Blog';
+=======
+import LogoCarousel from './components/LogoCarousel';
+import Differentials from './components/DifferentialsModern';
+import ProductCatalog from './components/ProductCatalogModern';
+import Testimonials from './components/TestimonialsModern';
+import Blog from './components/BlogModern';
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
 import ContactForm from './components/ContactForm';
 import FAQ from './components/FAQ';
-import About from './components/About';
+import About from './components/AboutModern';
 import Footer from './components/Footer';
 import LeadQuiz from './components/LeadQuiz';
 import ScrollProgress from './components/ui/ScrollProgress';
@@ -118,6 +126,7 @@ function App() {
           () => setIsModalOpen(true)
           └─ Arrow function que muda isModalOpen para true */}
       <Hero onCTAClick={() => setIsModalOpen(true)} />
+<<<<<<< HEAD
 
       {/* Container com margens compactas entre seções */}
       <div className="space-y-0">
@@ -195,6 +204,11 @@ function App() {
             ════════════════════════════════════════════════════════════
             História e valores da ONDA PRO. */}
         <About />
+=======
+      <LogoCarousel />
+      <div id="diferenciais">
+        <Differentials onCTAClick={() => setIsModalOpen(true)} />
+>>>>>>> c49edcd5df47ba19e8b4a9b14029260d7fa70a83
       </div>
 
       {/* ════════════════════════════════════════════════════════════
