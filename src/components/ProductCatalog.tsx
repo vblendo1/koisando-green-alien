@@ -1,112 +1,124 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AnimatedSection from './ui/AnimatedSection';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface ProductCatalogProps {
   onCTAClick: () => void;
 }
 
 const ProductCatalog = ({ onCTAClick }: ProductCatalogProps) => {
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
-
   const products = [
     {
-      title: 'Linha Escolar Premium',
-      shortDesc: 'Cadernos, agendas e materiais com design exclusivo',
-      fullDesc: 'Produtos desenvolvidos especialmente para o período escolar, com acabamento premium e designs que chamam atenção nas prateleiras. Margens de até 180%.',
-      gradient: 'from-[#6c256f] to-[#8c4091]',
-      icon: '📚'
+      name: 'Linha Cute',
+      designation: 'Fofura que Vende Sozinha',
+      description: 'Produtos encantadores, com apelo visual irresistível e giro altíssimo. Linha feita para papelarias e lojas que querem vender sem esforço.',
+      src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&auto=format&fit=crop'
     },
     {
-      title: 'Organização & Escritório',
-      shortDesc: 'Planejadores, organizadores e acessórios corporativos',
-      fullDesc: 'Linha completa para organização pessoal e profissional. Produtos com alta rotatividade e ótima margem de lucro. Perfeitos para vendas corporativas.',
-      gradient: 'from-[#009bac] to-[#4dbdc6]',
-      icon: '💼'
+      name: 'Linha Prisma',
+      designation: 'Marcadores que Pintam em Qualquer Superfície',
+      description: 'Linha premium de marcadores vibrantes que pintam em papel, vidro, metal, madeira e plástico. Design desejado e desempenho profissional.',
+      src: '/prisma-produto-new.gif'
     },
     {
-      title: 'Presentes & Papelaria Criativa',
-      shortDesc: 'Itens diferenciados para datas especiais',
-      fullDesc: 'Produtos únicos que transformam sua vitrine. Ideal para datas comemorativas com margens excelentes e alto giro. Design que vende sozinho.',
-      gradient: 'from-[#8c4091] to-[#009bac]',
-      icon: '🎁'
+      name: 'Materiais Office',
+      designation: 'Organização que Vende Resultado',
+      description: 'Planejadores e acessórios corporativos com design profissional e alta margem de lucro. Estética e funcionalidade garantidas.',
+      src: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&auto=format&fit=crop'
     },
     {
-      title: 'Decoração & Casa',
-      shortDesc: 'Itens decorativos e funcionais para o lar',
-      fullDesc: 'Linha de produtos para decoração de ambientes. Quadros, organizadores decorativos e itens que unem funcionalidade e estética. Margem superior a 150%.',
-      gradient: 'from-[#4dbdc6] to-[#77c8d2]',
-      icon: '🏠'
+      name: 'Materiais Escolares',
+      designation: 'Praticidade que Gira o Ano Todo',
+      description: 'Itens indispensáveis: úteis, bonitos e de alta saída. Forte apelo na volta às aulas e vendas constantes o ano inteiro.',
+      src: 'https://images.unsplash.com/photo-1590935216541-8c769c0a8d69?w=800&auto=format&fit=crop'
     }
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Conheça os produtos que transformam{' '}
-            <span className="bg-gradient-to-r from-[#6c256f] to-[#009bac] bg-clip-text text-transparent">
-              prateleiras em lucro
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Escolha entre linhas que unem qualidade, apelo visual e rentabilidade.
-          </p>
-        </div>
+    <section id="produtos" className="py-12 md:py-16 bg-[#6c256f] relative overflow-hidden">
+      
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+        <AnimatedSection>
+          <div className="text-center mb-10 md:mb-16 px-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 md:mb-6 leading-tight text-white">
+              Conheça os produtos que transformam{' '}
+              <span className="text-[#4dbdc6]">
+                prateleiras em lucro
+              </span>
+            </h2>
+            <p className="text-base md:text-xl lg:text-2xl text-white/95 max-w-3xl mx-auto font-medium">
+              Escolha entre linhas que unem qualidade, apelo visual e rentabilidade.
+            </p>
+          </div>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className={`relative bg-gradient-to-br ${product.gradient} rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${
-                expandedCard === index ? 'md:col-span-2 min-h-[400px]' : 'min-h-[280px]'
-              }`}
-              onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-            >
-              <div className="absolute inset-0 bg-black/20"></div>
-
-              <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white">
-                <div>
-                  <div className="text-6xl mb-4">{product.icon}</div>
-                  <h3 className="text-3xl font-bold mb-4">{product.title}</h3>
-                  <p className="text-lg opacity-90 mb-4">{product.shortDesc}</p>
-
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      expandedCard === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <p className="text-lg leading-relaxed mt-4 border-t border-white/30 pt-4">
-                      {product.fullDesc}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between mt-6">
-                  <span className="text-sm font-medium">
-                    {expandedCard === index ? 'Clique para minimizar' : 'Clique para saber mais'}
-                  </span>
-                  <ChevronDown
-                    className={`transform transition-transform duration-300 ${
-                      expandedCard === index ? 'rotate-180' : ''
-                    }`}
-                    size={24}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center">
-          <button
-            onClick={onCTAClick}
-            className="inline-flex items-center gap-3 px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-[#009bac] to-[#4dbdc6] rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+        <div className="max-w-5xl mx-auto mb-16 md:mb-20">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
           >
-            <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
-            Quero um atendimento exclusivo
-          </button>
+            <CarouselContent>
+              {products.map((product, index) => (
+                <CarouselItem key={index}>
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="grid md:grid-cols-2 gap-0">
+                      <div className="relative h-64 md:h-96">
+                        <img
+                          src={product.src}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-6 md:p-8 flex flex-col justify-center">
+                        <h3 className="text-2xl md:text-3xl font-extrabold text-[#6c256f] mb-2">
+                          {product.name}
+                        </h3>
+                        <p className="text-lg md:text-xl text-[#4dbdc6] font-semibold mb-4">
+                          {product.designation}
+                        </p>
+                        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                          {product.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden lg:block">
+              <CarouselPrevious className="left-0 -translate-x-1/2 bg-white text-[#6c256f] hover:bg-white/90" />
+              <CarouselNext className="right-0 translate-x-1/2 bg-white text-[#6c256f] hover:bg-white/90" />
+            </div>
+          </Carousel>
         </div>
+
+        <AnimatedSection delay={0.4}>
+          <div className="text-center px-4">
+            <motion.button
+              onClick={onCTAClick}
+              className="inline-flex items-center justify-center gap-2 px-8 md:px-12 py-4 md:py-5 text-base md:text-lg font-bold text-[#6c256f] bg-white rounded-full shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.5)] transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span>Quero revender Onda Pro</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                →
+              </motion.span>
+            </motion.button>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
