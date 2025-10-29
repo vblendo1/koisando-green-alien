@@ -141,6 +141,48 @@ export type Database = {
         }
         Relationships: []
       }
+      user_metrics: {
+        Row: {
+          arm_cm: number | null
+          chest_cm: number | null
+          created_at: string | null
+          hip_cm: number | null
+          id: string
+          notes: string | null
+          recorded_at: string
+          thigh_cm: number | null
+          user_id: string
+          waist_cm: number | null
+          weight_kg: number | null
+        }
+        Insert: {
+          arm_cm?: number | null
+          chest_cm?: number | null
+          created_at?: string | null
+          hip_cm?: number | null
+          id?: string
+          notes?: string | null
+          recorded_at?: string
+          thigh_cm?: number | null
+          user_id: string
+          waist_cm?: number | null
+          weight_kg?: number | null
+        }
+        Update: {
+          arm_cm?: number | null
+          chest_cm?: number | null
+          created_at?: string | null
+          hip_cm?: number | null
+          id?: string
+          notes?: string | null
+          recorded_at?: string
+          thigh_cm?: number | null
+          user_id?: string
+          waist_cm?: number | null
+          weight_kg?: number | null
+        }
+        Relationships: []
+      }
       user_products: {
         Row: {
           id: string
