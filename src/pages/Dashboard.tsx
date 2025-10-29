@@ -2,12 +2,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, BarChart3, BookOpen, Users } from 'lucide-react';
+import { LogOut, BarChart3, Home } from 'lucide-react';
 import { MetricsHistory } from '@/components/MetricsHistory';
 import { MetricsForm } from '@/components/MetricsForm';
-import { DailyDiary } from '@/components/DailyDiary';
-import { Community } from '@/components/Community';
 
 const Dashboard = () => {
   const { user, signOut, loading } = useAuth();
@@ -49,6 +46,15 @@ const Dashboard = () => {
             <div className="flex items-center gap-2">
               <Button
                 variant="ghost"
+                size="sm"
+                onClick={() => navigate('/home')}
+                className="flex items-center gap-2"
+              >
+                <Home className="h-4 w-4" />
+                <span className="hidden sm:inline">Início</span>
+              </Button>
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={signOut}
                 className="text-foreground hover:text-primary"
@@ -62,52 +68,22 @@ const Dashboard = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <Tabs defaultValue="metrics" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-4">
-            <TabsTrigger value="metrics" className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4" />
-              <span className="hidden sm:inline">Métricas</span>
-            </TabsTrigger>
-            <TabsTrigger value="diary" className="flex items-center gap-2">
-              <BookOpen className="h-4 w-4" />
-              <span className="hidden sm:inline">Diário</span>
-            </TabsTrigger>
-            <TabsTrigger value="community" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              <span className="hidden sm:inline">Comunidade</span>
-            </TabsTrigger>
-          </TabsList>
+      <main className="container mx-auto px-4 py-12 space-y-12">
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Registrar Métricas</h2>
+            <p className="text-muted-foreground">Acompanhe seu peso e medidas corporais</p>
+          </div>
+          <MetricsForm />
+        </div>
 
-          {/* Metrics Tab */}
-          <TabsContent value="metrics" className="space-y-6 mt-6">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-2">Registrar Métricas</h2>
-                <p className="text-muted-foreground">Acompanhe seu peso e medidas corporais</p>
-              </div>
-              <MetricsForm />
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-2">Histórico de Métricas</h2>
-                <p className="text-muted-foreground">Veja todos os seus registros anteriores</p>
-              </div>
-              <MetricsHistory />
-            </div>
-          </TabsContent>
-
-          {/* Diary Tab */}
-          <TabsContent value="diary" className="mt-6">
-            <DailyDiary />
-          </TabsContent>
-
-          {/* Community Tab */}
-          <TabsContent value="community" className="mt-6">
-            <Community />
-          </TabsContent>
-        </Tabs>
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Histórico de Métricas</h2>
+            <p className="text-muted-foreground">Veja todos os seus registros anteriores</p>
+          </div>
+          <MetricsHistory />
+        </div>
       </main>
     </div>
   );

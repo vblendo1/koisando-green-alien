@@ -5,8 +5,10 @@ import { useAdmin } from '@/hooks/useAdmin';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { LogOut, Settings, BookOpen, BarChart3, Zap } from 'lucide-react';
-import { ProductCarousel } from '@/components/ProductCarousel';
+import { LogOut, Settings, BarChart3, Zap, Sparkles } from 'lucide-react';
+import { HeroBanner } from '@/components/HeroBanner';
+import { ContinueWatching } from '@/components/ContinueWatching';
+import { ProgramRow } from '@/components/ProgramRow';
 import { MetricsSummary } from '@/components/MetricsSummary';
 
 const Home = () => {
@@ -20,7 +22,7 @@ const Home = () => {
     }
   }, [user, loading, navigate]);
 
-  const { data: userProducts } = useQuery({
+  const { data: userProducts, isLoading: isLoadingUserProducts } = useQuery({
     queryKey: ['user-products', user?.id],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -33,7 +35,7 @@ const Home = () => {
     enabled: !!user,
   });
 
-  const { data: products } = useQuery({
+  const { data: products, isLoading: isLoadingProducts } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -45,8 +47,26 @@ const Home = () => {
     },
   });
 
+  const isDataLoading = isLoadingUserProducts || isLoadingProducts;
+
   const ownedProducts = products?.filter(p => userProducts?.includes(p.id)) || [];
   const lockedProducts = products?.filter(p => !userProducts?.includes(p.id)) || [];
+  const featuredProduct = products?.find(p => p.featured && userProducts?.includes(p.id)) || ownedProducts[0];
+  const newProducts = products?.filter(p => {
+    if (!p.created_at) return false;
+    const created = new Date(p.created_at);
+    const now = new Date();
+    const diffDays = Math.floor((now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24));
+    return diffDays <= 7;
+  }) || [];
+
+  // Group products by category
+  const categorizedProducts = products?.reduce((acc: Record<string, any[]>, product) => {
+    const category = product.category || 'Outros';
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(product);
+    return acc;
+  }, {});
 
   const handleProductClick = (product: any) => {
     navigate(`/product/${product.slug}`);
@@ -66,38 +86,54 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen pb-20 bg-gradient-to-br from-background via-background to-background/50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/50">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen pb-20 bg-background">
+      {/* Navbar Netflix-style */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-background via-background/95 to-transparent backdrop-blur-sm transition-all">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
+            <div className="flex items-center gap-6">
+              <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
                 Time Cacau
               </h1>
-              <p className="text-xs md:text-sm text-muted-foreground">
-                Sua transformação começa aqui ✨
-              </p>
+              <nav className="hidden md:flex items-center gap-4 text-sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate('/home')}
+                  className="text-foreground hover:text-primary"
+                >
+                  Início
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate('/dashboard')}
+                  className="text-muted-foreground hover:text-primary"
+                >
+                  Meu Progresso
+                </Button>
+              </nav>
             </div>
+            
             <div className="flex items-center gap-2">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
                 onClick={() => navigate('/dashboard')}
-                className="flex items-center gap-2 hidden sm:flex"
+                className="flex items-center gap-2"
               >
                 <BarChart3 className="h-4 w-4" />
-                Dashboard
+                <span className="hidden sm:inline">Dashboard</span>
               </Button>
               {isAdmin && (
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => navigate('/admin')}
-                  className="flex items-center gap-2 hidden sm:flex"
+                  className="flex items-center gap-2"
                 >
                   <Settings className="h-4 w-4" />
-                  Admin
+                  <span className="hidden sm:inline">Admin</span>
                 </Button>
               )}
               <Button
@@ -114,60 +150,119 @@ const Home = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12 space-y-16">
-        {/* Metrics Summary Section */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2">
-                <BarChart3 className="h-8 w-8 text-primary" />
-                Seu Progresso
-              </h2>
-              <p className="text-muted-foreground mt-1">Acompanhe sua jornada de transformação</p>
+      <main className="pt-16">
+        {/* Hero Banner - Featured Program */}
+        {featuredProduct && !isDataLoading && (
+          <HeroBanner
+            name={featuredProduct.name}
+            description={featuredProduct.description}
+            coverImage={featuredProduct.cover_image}
+            category={featuredProduct.category}
+            onPlay={() => handleProductClick(featuredProduct)}
+            onInfo={() => handleProductClick(featuredProduct)}
+          />
+        )}
+
+        {/* Content Sections */}
+        <div className="container mx-auto px-4 py-8 space-y-12">
+          {/* Metrics Summary */}
+          <section className="space-y-4 animate-fade-in">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-2">
+                  <BarChart3 className="h-6 w-6 text-primary" />
+                  Seu Progresso
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">Acompanhe sua jornada</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/dashboard')}
+                className="flex items-center gap-2"
+              >
+                <Sparkles className="h-4 w-4" />
+                Ver Detalhes
+              </Button>
             </div>
-            <Button
-              onClick={() => navigate('/dashboard')}
-              className="flex items-center gap-2"
-            >
-              <Zap className="h-4 w-4" />
-              Acessar Dashboard
-            </Button>
-          </div>
-          <MetricsSummary />
-        </section>
+            <MetricsSummary />
+          </section>
 
-        {/* Products Section */}
-        {products && products.length > 0 ? (
-          <div className="space-y-12">
-            {/* Owned Products Carousel */}
-            {ownedProducts.length > 0 && (
-              <ProductCarousel
-                title="Meus Programas"
-                description="Acesse os programas que você já tem acesso"
-                products={ownedProducts}
-                onProductClick={handleProductClick}
-              />
-            )}
+          {/* Continue Watching */}
+          <ContinueWatching onProductClick={handleProductClick} />
 
-            {/* Locked Products Carousel */}
-            {lockedProducts.length > 0 && (
-              <ProductCarousel
-                title="Outros Programas"
-                description="Programas disponíveis na plataforma"
-                products={lockedProducts}
-                onProductClick={handleProductClick}
-                isLocked={true}
-              />
-            )}
-          </div>
-        ) : (
-          // Empty State
-          <div className="space-y-8">
-            <div className="flex flex-col items-center justify-center py-20 text-center space-y-6">
+          {/* My Programs */}
+          {ownedProducts.length > 0 && (
+            <ProgramRow
+              title="Meus Programas"
+              description="Continue sua jornada de transformação"
+              products={ownedProducts}
+              isLoading={isDataLoading}
+              onProductClick={handleProductClick}
+            />
+          )}
+
+          {/* New Programs */}
+          {newProducts.length > 0 && (
+            <ProgramRow
+              title="Novos Programas"
+              description="Acabou de chegar!"
+              products={newProducts}
+              isLoading={isDataLoading}
+              onProductClick={handleProductClick}
+            />
+          )}
+
+          {/* Categories */}
+          {categorizedProducts && Object.keys(categorizedProducts).map((category) => {
+            const categoryProducts = categorizedProducts[category];
+            const ownedInCategory = categoryProducts.filter(p => userProducts?.includes(p.id));
+            const lockedInCategory = categoryProducts.filter(p => !userProducts?.includes(p.id));
+
+            return (
+              <div key={category} className="space-y-8">
+                {ownedInCategory.length > 0 && (
+                  <ProgramRow
+                    title={category}
+                    description={`Seus programas de ${category.toLowerCase()}`}
+                    products={ownedInCategory}
+                    isLoading={isDataLoading}
+                    onProductClick={handleProductClick}
+                  />
+                )}
+                {lockedInCategory.length > 0 && (
+                  <ProgramRow
+                    title={`Explore ${category}`}
+                    description="Programas disponíveis"
+                    products={lockedInCategory}
+                    isLoading={isDataLoading}
+                    onProductClick={handleProductClick}
+                    isLocked={true}
+                  />
+                )}
+              </div>
+            );
+          })}
+
+          {/* Locked Programs */}
+          {lockedProducts.length > 0 && !categorizedProducts && (
+            <ProgramRow
+              title="Outros Programas"
+              description="Descubra mais conteúdos incríveis"
+              products={lockedProducts}
+              isLoading={isDataLoading}
+              onProductClick={handleProductClick}
+              isLocked={true}
+            />
+          )}
+
+          {/* Empty State */}
+          {!isDataLoading && (!products || products.length === 0) && (
+            <div className="flex flex-col items-center justify-center py-20 text-center space-y-6 animate-fade-in">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/5 rounded-full blur-3xl" />
                 <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20">
-                  <BookOpen className="w-12 h-12 text-primary" />
+                  <Sparkles className="w-12 h-12 text-primary" />
                 </div>
               </div>
               <div className="space-y-2 max-w-md">
@@ -178,35 +273,22 @@ const Home = () => {
                   Nenhum programa disponível no momento
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Fique atenta! Em breve você terá acesso aos melhores programas de emagrecimento e fitness.
+                  Fique atenta! Em breve você terá acesso aos melhores programas.
                 </p>
               </div>
-
-              {/* Quick Actions */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
                   onClick={() => navigate('/dashboard')}
-                  className="flex items-center gap-2"
                   size="lg"
+                  className="flex items-center gap-2"
                 >
                   <BarChart3 className="h-5 w-5" />
-                  Acompanhar Progresso
+                  Ver Dashboard
                 </Button>
-                {!isAdmin && (
-                  <Button
-                    onClick={() => navigate('/setup')}
-                    variant="outline"
-                    size="lg"
-                    className="flex items-center gap-2"
-                  >
-                    <Settings className="h-5 w-5" />
-                    Configuração
-                  </Button>
-                )}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </main>
     </div>
   );

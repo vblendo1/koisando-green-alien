@@ -24,6 +24,9 @@ const productSchema = z.object({
   description: z.string().optional(),
   slug: z.string().min(3, 'Slug deve ter pelo menos 3 caracteres'),
   cover_image: z.string().optional(),
+  thumbnail: z.string().optional(),
+  category: z.string().optional(),
+  featured: z.boolean().optional(),
 });
 
 type ProductFormData = z.infer<typeof productSchema>;
@@ -45,6 +48,9 @@ export const ProductForm = ({ product, onSuccess, mode = 'create' }: ProductForm
       description: product?.description || '',
       slug: product?.slug || '',
       cover_image: product?.cover_image || '',
+      thumbnail: product?.thumbnail || '',
+      category: product?.category || '',
+      featured: product?.featured || false,
     },
   });
 
@@ -52,10 +58,21 @@ export const ProductForm = ({ product, onSuccess, mode = 'create' }: ProductForm
     setIsLoading(true);
 
     try {
+      // Ensure required fields are present
+      const productData = {
+        name: data.name,
+        slug: data.slug,
+        description: data.description || null,
+        cover_image: data.cover_image || null,
+        thumbnail: data.thumbnail || null,
+        category: data.category || null,
+        featured: data.featured || false,
+      };
+
       if (mode === 'create') {
         const { error } = await supabase
           .from('products')
-          .insert([data]);
+          .insert([productData]);
 
         if (error) {
           toast.error('Erro ao criar produto');
@@ -67,7 +84,7 @@ export const ProductForm = ({ product, onSuccess, mode = 'create' }: ProductForm
       } else {
         const { error } = await supabase
           .from('products')
-          .update(data)
+          .update(productData)
           .eq('id', product.id);
 
         if (error) {
@@ -184,8 +201,39 @@ export const ProductForm = ({ product, onSuccess, mode = 'create' }: ProductForm
                     <Input placeholder="https://..." {...field} />
                   </FormControl>
                   <FormDescription>
-                    URL da imagem que será exibida no carrossel
+                    Imagem principal (hero banner)
                   </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="thumbnail"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>URL do Thumbnail</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://..." {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    Thumbnail para cards (opcional, usa cover_image se vazio)
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Categoria</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Ex: Emagrecimento, Fitness..." {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

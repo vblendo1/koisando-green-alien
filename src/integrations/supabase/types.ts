@@ -95,28 +95,37 @@ export type Database = {
       }
       products: {
         Row: {
+          category: string | null
           cover_image: string | null
           created_at: string | null
           description: string | null
+          featured: boolean | null
           id: string
           name: string
           slug: string
+          thumbnail: string | null
         }
         Insert: {
+          category?: string | null
           cover_image?: string | null
           created_at?: string | null
           description?: string | null
+          featured?: boolean | null
           id?: string
           name: string
           slug: string
+          thumbnail?: string | null
         }
         Update: {
+          category?: string | null
           cover_image?: string | null
           created_at?: string | null
           description?: string | null
+          featured?: boolean | null
           id?: string
           name?: string
           slug?: string
+          thumbnail?: string | null
         }
         Relationships: []
       }
