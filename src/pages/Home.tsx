@@ -83,7 +83,7 @@ const Home = () => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => navigate('/metrics')}
+                onClick={() => navigate('/dashboard')}
                 className="flex items-center gap-2 hidden sm:flex"
               >
                 <BarChart3 className="h-4 w-4" />
@@ -126,11 +126,11 @@ const Home = () => {
               <p className="text-muted-foreground mt-1">Acompanhe sua jornada de transformação</p>
             </div>
             <Button
-              onClick={() => navigate('/metrics')}
+              onClick={() => navigate('/dashboard')}
               className="flex items-center gap-2"
             >
               <Zap className="h-4 w-4" />
-              Registrar Métricas
+              Acessar Dashboard
             </Button>
           </div>
           <MetricsSummary />
@@ -185,7 +185,7 @@ const Home = () => {
               {/* Quick Actions */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
-                  onClick={() => navigate('/metrics')}
+                  onClick={() => navigate('/dashboard')}
                   className="flex items-center gap-2"
                   size="lg"
                 >
